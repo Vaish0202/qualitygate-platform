@@ -2,6 +2,20 @@ spring:
   application:
     name: qualitygate-backend
 
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/qualitygate}
+    username: ${DB_USERNAME:qualitygate_user}
+    password: ${DB_PASSWORD:qualitygate_pass}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
 server:
   port: 8080
 
