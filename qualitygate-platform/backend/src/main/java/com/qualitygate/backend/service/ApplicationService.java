@@ -15,6 +15,7 @@ import java.util.List;
 public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
+    private final EnvironmentService environmentService;
 
     public ApplicationResponse create(ApplicationRequest request) {
         Application application = new Application();
@@ -23,6 +24,7 @@ public class ApplicationService {
         application.setRepositoryUrl(request.getRepositoryUrl());
 
         Application saved = applicationRepository.save(application);
+        environmentService.provisionDefaultEnvironments(saved);
         return toResponse(saved);
     }
 
